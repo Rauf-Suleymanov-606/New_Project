@@ -45,10 +45,6 @@ public class PlayerService {
         PlayerEntity updatedObject = playerRepository.findById(requestPlayerDto.getId()).orElseThrow();
         playerMapper.update(updatedObject, requestPlayerDto);
         playerRepository.save(updatedObject);
-//
-//        updatedObject.setNumber(playerDto.getNumber());
-//        updatedObject.setName(playerDto.getName());
-//        updatedObject.setPlayerPosition(playerDto.getPlayerPosition());
-//
+
     }
 }
