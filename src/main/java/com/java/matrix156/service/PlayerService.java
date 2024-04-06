@@ -6,11 +6,13 @@ import com.java.matrix156.dto.UpdatePlayerDto;
 import com.java.matrix156.entity.PlayerEntity;
 import com.java.matrix156.mapper.PlayerMapper;
 import com.java.matrix156.repository.PlayerRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class PlayerService {
     private final PlayerRepository playerRepository;
     private final PlayerMapper playerMapper;
@@ -24,16 +26,12 @@ public class PlayerService {
         List<PlayerEntity> all = playerRepository.findAll();
         List<ResponsePlayerDto> responsePlayerDtos = playerMapper.entityToResponseDto(all);
         return responsePlayerDtos;
-
-
     }
 
     public void save(RequestPlayerDto requestPlayerDto) {
-
-
         PlayerEntity playerEntity = playerMapper.playerRequestDtoToEntity(requestPlayerDto);
+        log.trace("This player saved");
         playerRepository.save(playerEntity);
-
     }
 
     public void delete(Long id) {
